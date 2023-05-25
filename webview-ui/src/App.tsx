@@ -1,7 +1,7 @@
 import { vscode } from "./utilities/vscode";  
 import { Fragment, useState, useEffect } from "react";
 import { VSCodeButton } from "@vscode/webview-ui-toolkit/react";
-import { BeakerIcon } from '@heroicons/react/24/solid'
+import { BeakerIcon, PaperAirplaneIcon } from '@heroicons/react/24/solid'
 
 import { Transition } from '@headlessui/react'
 import { useTimeoutFn } from 'react-use'
@@ -128,23 +128,49 @@ function App() {
     console.log(message, inputMessage, outputMessages, isOutputComplete);
   }, [message, inputMessage, outputMessages, isOutputComplete]);
   return (
-    <main className="h-screen flex flex-col">
-      <div>
-        {outputMessages.map((message, index) => (
-          <p className={message.role === "user" ? "text-right" : ""} key={index}>
-            {message.content}
-          </p>
-        ))}
-        {message && <p className="">
-          {message}
-        </p>}
+    <main className="h-screen flex flex-col items-center bg-violet-600">
+      <div className="container bg-violet-400 h-screen">
+        <ul className="space-y-2">
+          {outputMessages.map((message, index) => (
+            message.role === "user" ? 
+            <li className="flex justify-end pt-4">
+              <div className="px-4">
+                <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1">
+                  <div className="trianle-right"></div>
+                  <div className="p-2">{message.content}</div>
+                </div>
+              </div>
+              <div className="relative p-0">
+                <img className="w-16 h-16 rounded-full" src="" />
+                <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem]">User</span>
+              </div>
+            </li> : 
+            <li className="flex justify-start pt-4" key={index}>
+              <div className="relative p-0">
+                <img className="w-16 h-16 rounded-full" src="" />
+                <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem]">AI</span>
+              </div>
+              <div className="px-4">
+                <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1">
+                  <div className="trianle-left"></div>
+                  <div className="p-2">{message.content}</div>
+                </div>
+              </div>
+            </li>
+          ))}
+          {message && <p className="">
+            {message}
+          </p>}
+        </ul>
       </div>
-      <div className="flex flex-row">
-        <textarea value={inputMessage} onChange={(e) => setInputMessage(e.target.value)}></textarea>
-        <button className="bg-violet-600 text-white" onClick={(e) => {
-          setOutputMessages((prev) => [...prev, { content: inputMessage, role: "user" }]);
-          setInputMessage("");
-        }}>送信</button>
+      <div className="flex flex-row gap-1 items-center justify-center content-center fixed bottom-0 left-auto right-auto w-screen h-36 bg-violet-900">
+        <div className="container flex flex-row gap-1 items-center justify-center content-center relative">
+          <textarea className="bg-violet-50 rounded w-full h-24 p-2 text-2xl text-violet-950" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)}></textarea>
+          <button className="bg-violet-600 text-white px-4 py-3 rounded w-fit absolute right-2" onClick={(e) => {
+            setOutputMessages((prev) => [...prev, { content: inputMessage, role: "user" }]);
+            setInputMessage("");
+          }}><PaperAirplaneIcon className="h-6 w-6 fill-white" /></button>
+        </div>
       </div>
       {/* <BeakerIcon className="h-6 w-6 text-blue-500" />
       <h1 className="text-3xl font-bold underline">
