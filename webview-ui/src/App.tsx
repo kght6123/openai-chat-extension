@@ -171,7 +171,7 @@ function App() {
         <ul className="space-y-2">
           {outputMessages.map((message, index) => (
             message.role === "user" ? 
-            <li className="flex justify-end pt-4">
+            <li className="flex justify-end pt-4" key={index}>
               <div className="px-4">
                 <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1 border-violet-50">
                   <div className="trianle-right"></div>
@@ -179,13 +179,13 @@ function App() {
                 </div>
               </div>
               <div className="relative p-0">
-                <img className="w-16 h-16 rounded-full" src={userImage} />
+                <img className="w-16 h-16 rounded-full max-w-none" src={userImage} />
                 <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem] text-violet-950">User</span>
               </div>
             </li> : 
             <li className="flex justify-start pt-4" key={index}>
               <div className="relative p-0">
-                <img className="w-16 h-16 rounded-full" src={assistantImage} />
+                <img className="w-16 h-16 rounded-full max-w-none" src={assistantImage} />
                 <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem] text-violet-950">AI</span>
               </div>
               <div className="px-4">
@@ -198,7 +198,7 @@ function App() {
           ))}
           {message && <li className="flex justify-start pt-4">
               <div className="relative p-0">
-                <img className="w-16 h-16 rounded-full" src={assistantImage} />
+                <img className="w-16 h-16 rounded-full max-w-none" src={assistantImage} />
                 <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem] text-violet-950">AI</span>
               </div>
               <div className="px-4">
@@ -211,7 +211,7 @@ function App() {
         </ul>
       </div>
       <div className="flex flex-row gap-1 items-center justify-center content-center fixed bottom-0 left-auto right-auto w-screen h-36 bg-violet-900">
-        <div className="container flex flex-row gap-1 items-center justify-center content-center relative">
+        <div className="container flex flex-row gap-1 items-center justify-center content-center relative mx-2">
           <textarea className="bg-violet-50 rounded w-full h-24 p-2 text-lg text-violet-950" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)}></textarea>
           <button className="bg-violet-600 text-white px-4 py-3 rounded w-fit absolute right-2" onClick={(e) => {
             setOutputMessages((prev) => [...prev, { content: inputMessage, role: "user" }]);
