@@ -2,7 +2,7 @@
   "name": "openai-chat-extension",
   "displayName": "openai-chat-extension",
   "description": "Open AI Chat Extension for my self version.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.75.0"
   },

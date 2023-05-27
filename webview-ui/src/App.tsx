@@ -175,7 +175,7 @@ function App() {
               <div className="px-4">
                 <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1 border-violet-50">
                   <div className="trianle-right"></div>
-                  <div className="p-2 text-violet-950">{message.content}</div>
+                  <pre className="p-2 text-violet-950 break-all whitespace-pre-wrap">{message.content}</pre>
                 </div>
               </div>
               <div className="relative p-0">
@@ -191,7 +191,7 @@ function App() {
               <div className="px-4">
                 <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1 border-violet-50">
                   <div className="trianle-left"></div>
-                  <div className="p-2 text-violet-950">{message.content}</div>
+                  <pre className="p-2 text-violet-950 break-all whitespace-pre-wrap">{message.content}</pre>
                 </div>
               </div>
             </li>
@@ -204,7 +204,7 @@ function App() {
               <div className="px-4">
                 <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1 border-violet-50">
                   <div className="trianle-left"></div>
-                  <div className="p-2 text-violet-950">{message}</div>
+                  <pre className="p-2 text-violet-950 break-all whitespace-pre-wrap">{message}</pre>
                 </div>
               </div>
             </li>}
