@@ -34,7 +34,7 @@ npm run build:webview
 code .
 
 # Create vsix package and install it
-npm run vscode:prepublish
+npm run build:webview
 npx vsce package
 code-insiders --install-extension openai-chat-extension-0.0.1.vsix
 ```
