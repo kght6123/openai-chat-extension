@@ -166,8 +166,8 @@ function App() {
     console.log(message, inputMessage, outputMessages, isOutputComplete);
   }, [message, inputMessage, outputMessages, isOutputComplete]);
   return (
-    <main className="h-screen flex flex-col items-center bg-violet-600">
-      <div className="container bg-violet-400 h-screen">
+    <main className="h-screen flex flex-col items-center bg-violet-600 pb-36">
+      <div className="container bg-violet-400 h-screen overflow-y-auto">
         <ul className="space-y-2">
           {outputMessages.map((message, index) => (
             message.role === "user" ? 
