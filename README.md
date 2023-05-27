@@ -29,9 +29,21 @@ npm run build:webview
 
 # Open sample in VS Code
 code .
+
+# Create vsix package and install it
+npx vsce package
+code-insiders --install-extension openai-chat-extension-0.0.1.vsix
 ```
 
 Once the sample is open inside VS Code you can run the extension by doing the following:
 
 1. Press `F5` to open a new Extension Development Host window
 2. Inside the host window, open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) and type `Hello World (React + Vite): Show`
+
+## VSIXファイルのインストール方法
+
+1. まず、VS Codeを開いてください。
+2. 左側のアクティビティバーにある「拡張機能」（四角形が重なっているようなアイコン）をクリックします。
+3. 上部にある「...」（もっと見る）ボタンをクリックします。
+4. ドロップダウンメニューから「VSIXからインストール...」を選択します。
+5. ファイル選択ダイアログが表示されたら、インストールしたい.vsixファイルを選択して「開く」をクリックします。

@@ -7,6 +7,9 @@
     "vscode": "^1.75.0"
   },
   "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:openai-chat-extension.showChatWindow"
+  ],
   "contributes": {
     "commands": [
       {
@@ -14,6 +17,10 @@
         "title": "Chat Window: Show"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kght6123/openai-chat-extension.git"
   },
   "scripts": {
     "install:all": "npm install && cd webview-ui && npm install",
