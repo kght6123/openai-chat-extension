@@ -24,6 +24,9 @@ cd hello-world
 # Install dependencies for both the extension and webview UI source code
 npm run install:all
 
+# Start webview UI source code for Browser
+npm run start:webview
+
 # Build webview UI source code
 npm run build:webview
 

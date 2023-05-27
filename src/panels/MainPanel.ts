@@ -51,9 +51,9 @@ export class MainPanel {
       // If a webview panel does not already exist create and show a new one
       const panel = window.createWebviewPanel(
         // Panel view type
-        "showHelloWorld",
+        "showChatWindow",
         // Panel title
-        "Hello World",
+        "AI Chat",
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
@@ -115,7 +115,7 @@ export class MainPanel {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta http-equiv="Content-Security-Policy" content="default-src https://api.openai.com https://raw.githubusercontent.com; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
           <link rel="stylesheet" type="text/css" href="${stylesUri}">
-          <title>Hello World</title>
+          <title>AI Chat</title>
         </head>
         <body>
           <div id="root"></div>
