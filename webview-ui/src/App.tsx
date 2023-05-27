@@ -6,6 +6,36 @@ import { BeakerIcon, PaperAirplaneIcon } from '@heroicons/react/24/solid'
 import { Transition } from '@headlessui/react'
 import { useTimeoutFn } from 'react-use'
 
+// import SorryPng from './images/16_sorry.png';
+// import GlassesPng from './images/38_Glasses.png';
+// import HelpPng from './images/40_HELP.png';
+// import AllNightPng from './images/47_all night.png';
+// import CatPng from './images/49_cat.png';
+// import BucketPng from './images/55_Bucket.png';
+
+const userImages = [
+  // '/images/16_sorry.png',
+  // '/images/40_HELP.png',
+  // '/images/47_all night.png',
+  // SorryPng,
+  // HelpPng,
+  // AllNightPng,
+  "https://raw.githubusercontent.com/toranoana/special/master/maid-engineers/16_sorry.png?raw=true",
+  "https://raw.githubusercontent.com/toranoana/special/master/maid-engineers/40_HELP.png?raw=true",
+];
+
+const assistantImages = [
+  // '/images/38_Glasses.png',
+  // '/images/49_cat.png',
+  // '/images/55_Bucket.png',
+  // GlassesPng,
+  // CatPng,
+  // BucketPng,
+  "https://raw.githubusercontent.com/toranoana/special/master/maid-engineers/38_Glasses.png?raw=true",
+  "https://raw.githubusercontent.com/toranoana/special/master/maid-engineers/49_cat.png?raw=true",
+  "https://raw.githubusercontent.com/toranoana/special/master/maid-engineers/55_Bucket.png?raw=true",
+];
+
 // function Example() {
 //   let [isShowing, setIsShowing] = useState(true)
 //   let [, , resetIsShowing] = useTimeoutFn(() => setIsShowing(true), 500)
@@ -59,6 +89,14 @@ function App() {
   const [inputMessage, setInputMessage] = useState("");
   const [outputMessages, setOutputMessages] = useState<OutputMessage[]>([]);
   const [isOutputComplete, setOutputComplete] = useState(false);
+
+  const [userImage, setUserImage] = useState(userImages[0]);
+  const [assistantImage, setAssistantImage] = useState(assistantImages[0]);
+
+  useEffect(() => {
+    setUserImage(userImages[Math.floor(Math.random() * userImages.length)]);
+    setAssistantImage(assistantImages[Math.floor(Math.random() * assistantImages.length)]);
+  }, []);
 
   useEffect(() => {
     if(outputMessages.length === 0 || outputMessages[outputMessages.length - 1].role == "assistant") return;
@@ -135,37 +173,46 @@ function App() {
             message.role === "user" ? 
             <li className="flex justify-end pt-4">
               <div className="px-4">
-                <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1">
+                <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1 border-violet-50">
                   <div className="trianle-right"></div>
-                  <div className="p-2">{message.content}</div>
+                  <div className="p-2 text-violet-950">{message.content}</div>
                 </div>
               </div>
               <div className="relative p-0">
-                <img className="w-16 h-16 rounded-full" src="" />
-                <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem]">User</span>
+                <img className="w-16 h-16 rounded-full" src={userImage} />
+                <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem] text-violet-950">User</span>
               </div>
             </li> : 
             <li className="flex justify-start pt-4" key={index}>
               <div className="relative p-0">
-                <img className="w-16 h-16 rounded-full" src="" />
-                <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem]">AI</span>
+                <img className="w-16 h-16 rounded-full" src={assistantImage} />
+                <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem] text-violet-950">AI</span>
               </div>
               <div className="px-4">
-                <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1">
+                <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1 border-violet-50">
                   <div className="trianle-left"></div>
-                  <div className="p-2">{message.content}</div>
+                  <div className="p-2 text-violet-950">{message.content}</div>
                 </div>
               </div>
             </li>
           ))}
-          {message && <p className="">
-            {message}
-          </p>}
+          {message && <li className="flex justify-start pt-4">
+              <div className="relative p-0">
+                <img className="w-16 h-16 rounded-full" src={assistantImage} />
+                <span className="absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem] text-violet-950">AI</span>
+              </div>
+              <div className="px-4">
+                <div className="bg-violet-300 relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1 border-violet-50">
+                  <div className="trianle-left"></div>
+                  <div className="p-2 text-violet-950">{message}</div>
+                </div>
+              </div>
+            </li>}
         </ul>
       </div>
       <div className="flex flex-row gap-1 items-center justify-center content-center fixed bottom-0 left-auto right-auto w-screen h-36 bg-violet-900">
         <div className="container flex flex-row gap-1 items-center justify-center content-center relative">
-          <textarea className="bg-violet-50 rounded w-full h-24 p-2 text-2xl text-violet-950" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)}></textarea>
+          <textarea className="bg-violet-50 rounded w-full h-24 p-2 text-lg text-violet-950" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)}></textarea>
           <button className="bg-violet-600 text-white px-4 py-3 rounded w-fit absolute right-2" onClick={(e) => {
             setOutputMessages((prev) => [...prev, { content: inputMessage, role: "user" }]);
             setInputMessage("");
