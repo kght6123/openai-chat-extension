@@ -36,7 +36,7 @@ code .
 # Create vsix package and install it
 npm run build:webview
 npx vsce package
-code-insiders --install-extension openai-chat-extension-0.0.1.vsix
+code-insiders --install-extension openai-chat-extension-0.0.8.vsix
 ```
 
 Once the sample is open inside VS Code you can run the extension by doing the following:
